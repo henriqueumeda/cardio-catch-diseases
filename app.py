@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import pickle
 import uvicorn
@@ -22,7 +23,6 @@ class Patient(BaseModel):
 
 @app.post('/predict')
 def predict(patient: Patient):
-
     # collect data
     if patient:
         df_raw = pd.DataFrame(dict(patient).values(), index=dict(patient).keys()).T
@@ -39,4 +39,5 @@ def predict(patient: Patient):
 
 if __name__ == '__main__':
     # start fastapi
-    uvicorn.run('app:app', host='127.0.0.1', port=8000)
+    port = os.environ.get('PORT', 8000)
+    uvicorn.run('app:app', host='127.0.0.1', port=port)

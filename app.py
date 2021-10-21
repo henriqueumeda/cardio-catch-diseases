@@ -40,4 +40,4 @@ def predict(patient: Patient):
 if __name__ == '__main__':
     # start fastapi
     port = os.environ.get('PORT', 8000)
-    uvicorn.run('app:app', host='127.0.0.1', port=port)
+    uvicorn.run('app:app', host='127.0.0.1', port=8000)
